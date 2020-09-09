@@ -1,0 +1,19 @@
+{
+    "name": "chenlongqiang/lcframe",
+    "description": "PHP micro framework",
+    "keywords": ["framework", "php", "micro", "easy", "simple"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "LukaChen",
+            "email": "365499684@qq.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3",
+        "noahbuscher/macaw": "dev-master",
+        "illuminate/database": "8.0.0",
+        "predis/predis": "^1.1.1",
+        "vlucas/phpdotenv": "^5.0"
+    }
+}
