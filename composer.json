@@ -15,5 +15,13 @@
         "illuminate/database": "8.0.0",
         "predis/predis": "^1.1.1",
         "vlucas/phpdotenv": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Lcframe\\": "src/"
+        },
+        "files": [
+            "src/Foundation/function.php"
+        ]
     }
 }
