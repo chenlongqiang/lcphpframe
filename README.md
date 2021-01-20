@@ -1,2 +1,2 @@
-# lcframe
+# lcphpframe
 PHP micro framework
