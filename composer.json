@@ -15,18 +15,11 @@
             "email": "365499684@qq.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/chenlongqiang/macaw.git"
-        }
-    ],
     "require": {
         "php": "^7.3",
         "illuminate/database": "8.0.0",
         "predis/predis": "^1.1.1",
-        "vlucas/phpdotenv": "^5.0",
-        "chenlongqiang/macaw": "^1"
+        "vlucas/phpdotenv": "^5.0"
     },
     "autoload": {
         "psr-4": {
