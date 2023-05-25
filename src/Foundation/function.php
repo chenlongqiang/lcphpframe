@@ -124,3 +124,72 @@ if (!function_exists('lc_curl')) {
         return $resp;
     }
 }
+
+if (!function_exists('array_set')) {
+    function array_set(&$array, $key, $value)
+    {
+        if (is_null($key)) {
+            return $array = $value;
+        }
+        $keys = explode('.', $key);
+        while (count($keys) > 1) {
+            $key = array_shift($keys);
+            if (!isset($array[$key]) || !is_array($array[$key])) {
+                $array[$key] = [];
+            }
+            $array = &$array[$key];
+        }
+        $array[array_shift($keys)] = $value;
+        return $array;
+    }
+}
+
+if (!function_exists('array_exists')) {
+    function array_exists($array, $key)
+    {
+        if ($array instanceof ArrayAccess) {
+            return $array->offsetExists($key);
+        }
+        return array_key_exists($key, $array);
+    }
+}
+
+if (!function_exists('array_accessible')) {
+    function array_accessible($value)
+    {
+        return is_array($value) || $value instanceof ArrayAccess;
+    }
+}
+
+if (!function_exists('value_callable')) {
+    function value_callable($value)
+    {
+        return $value instanceof Closure ? $value() : $value;
+    }
+}
+
+if (!function_exists('array_get')) {
+    function array_get($array, $key, $default = null)
+    {
+        if (!array_accessible($array)) {
+            return value_callable($default);
+        }
+        if (is_null($key)) {
+            return $array;
+        }
+        if (array_exists($array, $key)) {
+            return $array[$key];
+        }
+        if (strpos($key, '.') === false) {
+            return $array[$key] ?? value_callable($default);
+        }
+        foreach (explode('.', $key) as $segment) {
+            if (array_accessible($array) && array_exists($array, $segment)) {
+                $array = $array[$segment];
+            } else {
+                return value_callable($default);
+            }
+        }
+        return $array;
+    }
+}
